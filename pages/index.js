@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API, useInfiniteScroll } from "resources";
-import Loading from "components/Loading";
-import renderPosts from "components/renderPosts";
+import Table from "components/Posts";
+import Layout from "components/Layout";
 
 export default function index() {
   const [posts, setPosts] = useState([]);
@@ -27,9 +27,11 @@ export default function index() {
   }, []);
 
   return (
-    <>
-      {posts.map(renderPosts)}
-      {posts.length !== allPosts.length && isFetching && <Loading />}
-    </>
+    <Layout title="All Posts">
+      <Table
+        data={posts}
+        fetching={posts.length !== allPosts.length && isFetching}
+      />
+    </Layout>
   );
 }

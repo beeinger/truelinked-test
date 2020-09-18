@@ -1,3 +1,4 @@
+import Layout from "components/Layout";
 import Post from "components/Post";
 import User from "components/User";
 import { useRouter } from "next/router";
@@ -28,9 +29,9 @@ export default function id() {
   }, [post]);
 
   return (
-    <>
-      <Post data={post} />
+    <Layout title={post.title || "Post"} post>
+      <Post data={post} author={user.name} />
       <User data={user} />
-    </>
+    </Layout>
   );
 }
